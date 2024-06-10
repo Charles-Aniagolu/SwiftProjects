@@ -45,9 +45,7 @@ struct MenuView: View {
             
         }
         . listStyle(.plain)
-        
-        
-        
+         
         
     }
 }
