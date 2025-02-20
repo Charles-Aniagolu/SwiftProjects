@@ -7,25 +7,52 @@
 
 import SwiftUI
 
-
-
-
-
 struct RestaurantListView: View {
-    @StateObject private var viewModel = RestaurantViewModel()
+    @StateObject var viewModel = RestaurantViewModel() // Observes data updates
 
     var body: some View {
         NavigationView {
-            List(viewModel.restaurants) { restaurant in
-                NavigationLink(destination: RestaurantDetailView(restaurant: restaurant)) {
-                    RestaurantRowView(restaurant: restaurant)
+            VStack {
+                // Picker for Cuisine Filtering
+                Picker("Filter by Cuisine", selection: $viewModel.selectedCuisine) {
+                    Text("All").tag(nil as String?)
+                    ForEach(viewModel.cuisineTypes, id: \.self) { cuisine in
+                        Text(cuisine).tag(cuisine as String?)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+
+                // List of Restaurants (Filtered)
+                List(viewModel.filteredRestaurants) { restaurant in
+                    NavigationLink(destination: RestaurantDetailView(restaurant: restaurant)) {
+                        HStack {
+                            // Circular Image for Restaurants
+                            Image(restaurant.imageName)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle()) // Makes it a circle
+                                .overlay(Circle().stroke(Color.gray, lineWidth: 1)) // Optional border
+                                .shadow(radius: 2) // Adds subtle shadow
+
+                            VStack(alignment: .leading) {
+                                Text(restaurant.name)
+                                    .font(.headline)
+                                Text(restaurant.cuisine)
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
                 }
             }
             .navigationTitle("Restaurants")
         }
     }
 }
- 
+
+
  
 
 

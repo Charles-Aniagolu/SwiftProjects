@@ -11,9 +11,9 @@
 import Foundation
 import Combine
 
-// ViewModel
 class RestaurantViewModel: ObservableObject {
     @Published var restaurants: [Restaurant] = []
+    @Published var selectedCuisine: String? = nil // Holds the selected cuisine for filtering
 
     init() {
         fetchRestaurants()
@@ -51,21 +51,6 @@ class RestaurantViewModel: ObservableObject {
                             )
                         ],
                         imageName: "appetizers"
-                    ),
-                    Menu(
-                        id: UUID(),
-                        name: "Desserts",
-                        dishes: [
-                            Dish(
-                                id: UUID(),
-                                name: "Chocolate Cake",
-                                description: "Rich and moist chocolate cake",
-                                ingredients: ["Flour", "Cocoa Powder", "Sugar", "Eggs", "Butter"],
-                                price: 5.66,
-                                imageName: "chocolate_cake"
-                            )
-                        ],
-                        imageName: "desserts"
                     )
                 ],
                 imageName: "la_trattoria"
@@ -75,8 +60,8 @@ class RestaurantViewModel: ObservableObject {
                 name: "Sushi Haven",
                 location: "45 Ocean Blvd, Espoo",
                 cuisine: "Japanese",
-                description: "Fresh and authentic sushi with the finest ingredients.",
-                rating: 6.2,
+                description: "Authentic Japanese sushi made from the freshest ingredients.",
+                rating: 4.8,
                 menus: [
                     Menu(
                         id: UUID(),
@@ -109,12 +94,12 @@ class RestaurantViewModel: ObservableObject {
                 name: "Burger Bistro",
                 location: "88 Grill St, Tampere",
                 cuisine: "American",
-                description: "Sweet tasting Burger Bistro",
-                rating: 8.5,
+                description: "Delicious gourmet burgers with fresh ingredients.",
+                rating: 4.7,
                 menus: [
                     Menu(
                         id: UUID(),
-                        name: "Classic Burgers",
+                        name: "Burgers",
                         dishes: [
                             Dish(
                                 id: UUID(),
@@ -133,7 +118,7 @@ class RestaurantViewModel: ObservableObject {
                                 imageName: "bacon_burger"
                             )
                         ],
-                        imageName: "classic_burgers"
+                        imageName: "burgers"
                     )
                 ],
                 imageName: "burger_bistro"
@@ -143,8 +128,8 @@ class RestaurantViewModel: ObservableObject {
                 name: "Cafe Delight",
                 location: "22 Baker St, Turku",
                 cuisine: "Desserts & Beverages",
-                description: "A cozy café with delicious pastries and beverages.",
-                rating: 10.2,
+                description: "A cozy café with freshly brewed coffee and homemade pastries.",
+                rating: 4.9,
                 menus: [
                     Menu(
                         id: UUID(),
@@ -174,8 +159,23 @@ class RestaurantViewModel: ObservableObject {
             )
         ]
 
+        // ✅ Update the restaurant list safely on the main thread
         DispatchQueue.main.async {
             self.restaurants = sampleRestaurants
         }
+    }
+
+    // ✅ Get unique cuisine types dynamically
+    var cuisineTypes: [String] {
+        let allCuisines = restaurants.map { $0.cuisine }
+        return Array(Set(allCuisines)).sorted() // Removes duplicates & sorts
+    }
+
+    // ✅ Filter restaurants based on the selected cuisine type
+    var filteredRestaurants: [Restaurant] {
+        if let selectedCuisine = selectedCuisine, !selectedCuisine.isEmpty {
+            return restaurants.filter { $0.cuisine == selectedCuisine }
+        }
+        return restaurants // Show all restaurants if no filter is selected
     }
 }
