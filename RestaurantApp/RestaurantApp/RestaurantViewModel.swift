@@ -159,19 +159,19 @@ class RestaurantViewModel: ObservableObject {
             )
         ]
 
-        // ✅ Update the restaurant list safely on the main thread
+        // Update the restaurant list safely on the main thread
         DispatchQueue.main.async {
             self.restaurants = sampleRestaurants
         }
     }
 
-    // ✅ Get unique cuisine types dynamically
+    // Get unique cuisine types dynamically
     var cuisineTypes: [String] {
         let allCuisines = restaurants.map { $0.cuisine }
         return Array(Set(allCuisines)).sorted() // Removes duplicates & sorts
     }
 
-    // ✅ Filter restaurants based on the selected cuisine type
+    // Filter restaurants based on the selected cuisine type
     var filteredRestaurants: [Restaurant] {
         if let selectedCuisine = selectedCuisine, !selectedCuisine.isEmpty {
             return restaurants.filter { $0.cuisine == selectedCuisine }

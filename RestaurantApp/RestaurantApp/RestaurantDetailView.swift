@@ -13,7 +13,7 @@ struct RestaurantDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
-                // 🖼 Restaurant Image with Professional Touch
+                // Restaurant Image with Professional Touch
                 ZStack {
                     Rectangle()
                         .fill(Color(.systemGray6)) // Adds a light background for contrast
@@ -31,14 +31,14 @@ struct RestaurantDetailView: View {
                 .padding(.horizontal, 15)
                 .padding(.top, 5)
 
-                // 📌 Restaurant Name (Title)
+                // Restaurant Name (Title)
                 Text(restaurant.name)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                     .padding(.horizontal, 15)
 
-                // 📝 Restaurant Description
+                // Restaurant Description
                 Text(restaurant.description)
                     .font(.body)
                     .foregroundColor(.secondary)
