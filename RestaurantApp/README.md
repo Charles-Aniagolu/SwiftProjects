@@ -1,2 +1,2 @@
 # RestaurantApp
-Restaurent app displays different restaurant where users can order different recipes of dishes
+A SwiftUI-based Restaurant App that allows users to explore various restaurants, save favorites, place orders, and manage their profile—all in one place! Features include a dynamic restaurant list, a Favorites tab for bookmarking preferred restaurants, an Order tab for managing placed orders, and a Profile tab for user settings. Built using SwiftUI with MVVM architecture and persistent storage via @AppStorage/CoreData.
