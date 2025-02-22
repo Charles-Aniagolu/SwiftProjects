@@ -1,1 +1,9 @@
-RestaurantApp.xcodeproj/project.xcworkspace/xcuserdata/
+# Xcode-related files
+.DS_Store
+build/
+DerivedData/
+xcuserdata/
+xcshareddata/
+Pods/
+.swiftpm/
+

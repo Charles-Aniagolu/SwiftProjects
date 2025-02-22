@@ -7,11 +7,3 @@
 
 import SwiftUI
 
-struct MenuView: View {
-    var body: some View {
-        NavigationView {
-            Text("Menu Content")
-                .navigationTitle("Menu")
-        }
-    }
-}

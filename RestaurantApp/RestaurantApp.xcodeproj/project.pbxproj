@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22D9884D2D6A291800C17019 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D9884C2D6A291800C17019 /* FavoritesView.swift */; };
 		22E4D1072D68A5860028AE49 /* RestaurantRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E4D1002D68A5860028AE49 /* RestaurantRow.swift */; };
 		22E4D1082D68A5860028AE49 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E4D1042D68A5860028AE49 /* UserManager.swift */; };
 		22E4D1092D68A5860028AE49 /* RestaurantDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E4D0FE2D68A5860028AE49 /* RestaurantDetailView.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		2218EA852D64AA3900CE14F6 /* RestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D9884C2D6A291800C17019 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		22E4D0ED2D68A5860028AE49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22E4D0EE2D68A5860028AE49 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		22E4D0EF2D68A5860028AE49 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
@@ -46,7 +48,6 @@
 		22E4D0F92D68A5860028AE49 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		22E4D0FA2D68A5860028AE49 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		22E4D0FC2D68A5860028AE49 /* RestaurantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantApp.swift; sourceTree = "<group>"; };
-		22E4D0FD2D68A5860028AE49 /* RestaurantApp.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = RestaurantApp.xcodeproj; sourceTree = "<group>"; };
 		22E4D0FE2D68A5860028AE49 /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
 		22E4D0FF2D68A5860028AE49 /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
 		22E4D1002D68A5860028AE49 /* RestaurantRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRow.swift; sourceTree = "<group>"; };
@@ -78,6 +79,7 @@
 		2218EA7C2D64AA3900CE14F6 = {
 			isa = PBXGroup;
 			children = (
+				22D9884C2D6A291800C17019 /* FavoritesView.swift */,
 				22E4D0ED2D68A5860028AE49 /* Assets.xcassets */,
 				22E4D0EE2D68A5860028AE49 /* Dish.swift */,
 				22E4D0EF2D68A5860028AE49 /* MainTabView.swift */,
@@ -92,7 +94,6 @@
 				22E4D0F92D68A5860028AE49 /* Restaurant.swift */,
 				22E4D0FB2D68A5860028AE49 /* RestaurantApp */,
 				22E4D0FC2D68A5860028AE49 /* RestaurantApp.swift */,
-				22E4D0FD2D68A5860028AE49 /* RestaurantApp.xcodeproj */,
 				22E4D0FE2D68A5860028AE49 /* RestaurantDetailView.swift */,
 				22E4D0FF2D68A5860028AE49 /* RestaurantListView.swift */,
 				22E4D1002D68A5860028AE49 /* RestaurantRow.swift */,
@@ -127,11 +128,6 @@
 				22E4D0FA2D68A5860028AE49 /* .gitignore */,
 			);
 			path = RestaurantApp;
-			sourceTree = "<group>";
-		};
-		22E4D1052D68A5860028AE49 /* Products */ = {
-			isa = PBXGroup;
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,12 +183,6 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2218EA862D64AA3900CE14F6 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 22E4D1052D68A5860028AE49 /* Products */;
-					ProjectRef = 22E4D0FD2D68A5860028AE49 /* RestaurantApp.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				2218EA842D64AA3900CE14F6 /* RestaurantApp */,
@@ -227,6 +217,7 @@
 				22E4D10C2D68A5860028AE49 /* Review.swift in Sources */,
 				22E4D10D2D68A5860028AE49 /* Dish.swift in Sources */,
 				22E4D10E2D68A5860028AE49 /* Order.swift in Sources */,
+				22D9884D2D6A291800C17019 /* FavoritesView.swift in Sources */,
 				22E4D10F2D68A5860028AE49 /* RestaurantListView.swift in Sources */,
 				22E4D1102D68A5860028AE49 /* RestaurantViewModel.swift in Sources */,
 				22E4D1112D68A5860028AE49 /* ProfileView.swift in Sources */,

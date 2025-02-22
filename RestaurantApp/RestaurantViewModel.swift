@@ -14,6 +14,7 @@ import Combine
 class RestaurantViewModel: ObservableObject {
     @Published var restaurants: [Restaurant] = []
     @Published var selectedCuisine: String? = nil // Holds the selected cuisine for filtering
+    @Published var favorites: Set<UUID> = [] // Stores favorite restaurant IDs
 
     init() {
         fetchRestaurants()
@@ -47,7 +48,7 @@ class RestaurantViewModel: ObservableObject {
                                 description: "Toasted bread with tomatoes and basil",
                                 ingredients: ["Bread", "Tomatoes", "Basil", "Olive Oil"],
                                 price: 6.99,
-                                imageName: "bruschetta" 
+                                imageName: "bruschetta"
                             )
                         ],
                         imageName: "appetizers"
@@ -62,31 +63,7 @@ class RestaurantViewModel: ObservableObject {
                 cuisine: "Japanese",
                 description: "Authentic Japanese sushi made from the freshest ingredients.",
                 rating: 4.8,
-                menus: [
-                    Menu(
-                        id: UUID(),
-                        name: "Sushi Rolls",
-                        dishes: [
-                            Dish(
-                                id: UUID(),
-                                name: "Spicy Tuna",
-                                description: "Fresh tuna served on vinegared rice",
-                                ingredients: ["Tuna", "Sushi Rice", "Soy Sauce", "Wasabi"],
-                                price: 5.99,
-                                imageName: "spicy_tuna"
-                            ),
-                            Dish(
-                                id: UUID(),
-                                name: "California Roll",
-                                description: "Classic sushi roll with crab, avocado, and cucumber",
-                                ingredients: ["Crab Meat", "Avocado", "Cucumber", "Nori", "Sushi Rice"],
-                                price: 6.99,
-                                imageName: "california_roll"
-                            )
-                        ],
-                        imageName: "sushi_rolls"
-                    )
-                ],
+                menus: [],
                 imageName: "sushi_haven"
             ),
             Restaurant(
@@ -96,31 +73,7 @@ class RestaurantViewModel: ObservableObject {
                 cuisine: "American",
                 description: "Delicious gourmet burgers with fresh ingredients.",
                 rating: 4.7,
-                menus: [
-                    Menu(
-                        id: UUID(),
-                        name: "Burgers",
-                        dishes: [
-                            Dish(
-                                id: UUID(),
-                                name: "Cheeseburger",
-                                description: "Juicy beef patty with melted cheese",
-                                ingredients: ["Beef Patty", "Cheese", "Lettuce", "Tomato", "Burger Bun"],
-                                price: 8.99,
-                                imageName: "cheeseburger"
-                            ),
-                            Dish(
-                                id: UUID(),
-                                name: "Bacon Burger",
-                                description: "Beef patty with crispy bacon and BBQ sauce",
-                                ingredients: ["Beef Patty", "Bacon", "BBQ Sauce", "Burger Bun"],
-                                price: 10.99,
-                                imageName: "bacon_burger"
-                            )
-                        ],
-                        imageName: "burgers"
-                    )
-                ],
+                menus: [],
                 imageName: "burger_bistro"
             ),
             Restaurant(
@@ -130,31 +83,7 @@ class RestaurantViewModel: ObservableObject {
                 cuisine: "Desserts & Beverages",
                 description: "A cozy café with freshly brewed coffee and homemade pastries.",
                 rating: 4.9,
-                menus: [
-                    Menu(
-                        id: UUID(),
-                        name: "Beverages",
-                        dishes: [
-                            Dish(
-                                id: UUID(),
-                                name: "Herbal Tea",
-                                description: "Calming blend of chamomile and mint",
-                                ingredients: ["Herbal Tea Leaves", "Water", "Honey", "Lemon"],
-                                price: 3.50,
-                                imageName: "herbal_tea"
-                            ),
-                            Dish(
-                                id: UUID(),
-                                name: "Cappuccino",
-                                description: "Rich espresso with steamed milk and foam",
-                                ingredients: ["Espresso", "Milk"],
-                                price: 4.50,
-                                imageName: "cappuccino"
-                            )
-                        ],
-                        imageName: "beverages"
-                    )
-                ],
+                menus: [],
                 imageName: "cafe_delight"
             )
         ]
@@ -177,5 +106,19 @@ class RestaurantViewModel: ObservableObject {
             return restaurants.filter { $0.cuisine == selectedCuisine }
         }
         return restaurants // Show all restaurants if no filter is selected
+    }
+    
+    // Toggle favorite function
+    func toggleFavorite(_ restaurant: Restaurant) {
+        if favorites.contains(restaurant.id) {
+            favorites.remove(restaurant.id) // Unmark favorite
+        } else {
+            favorites.insert(restaurant.id) // Mark as favorite
+        }
+    }
+
+    // Computed property to get only favorite restaurants
+    var favoriteRestaurants: [Restaurant] {
+        restaurants.filter { favorites.contains($0.id) }
     }
 }

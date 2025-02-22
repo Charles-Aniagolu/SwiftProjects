@@ -1,33 +1,33 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @StateObject private var restaurantViewModel = RestaurantViewModel()
+    @StateObject var viewModel = RestaurantViewModel() // One shared instance
 
     var body: some View {
         TabView {
-            RestaurantListView()
-                .environmentObject(restaurantViewModel) // Inject ViewModel
+            RestaurantListView(viewModel: viewModel)
                 .tabItem {
                     Label("Restaurants", systemImage: "fork.knife")
                 }
-            
-            Text("Favorites") // Placeholder for Favorites View
+
+            FavoritesView(viewModel: viewModel) // Uses the same instance
                 .tabItem {
-                    Label("Favorites", systemImage: "heart.fill")
+                    Label("Favorites", systemImage: "heart")
                 }
-            
-            Text("Orders") // Placeholder for Orders View
+
+            Text("Orders") // Placeholder
                 .tabItem {
                     Label("Orders", systemImage: "cart")
                 }
 
-            Text("Profile") // Placeholder for Profile View
+            Text("Profile") // Placeholder
                 .tabItem {
-                    Label("Profile", systemImage: "person.circle")
+                    Label("Profile", systemImage: "person")
                 }
         }
     }
 }
+
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
