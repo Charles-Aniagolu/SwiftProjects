@@ -47,7 +47,7 @@ class RestaurantViewModel: ObservableObject {
                                 description: "Toasted bread with tomatoes and basil",
                                 ingredients: ["Bread", "Tomatoes", "Basil", "Olive Oil"],
                                 price: 6.99,
-                                imageName: "bruschetta"
+                                imageName: "bruschetta" 
                             )
                         ],
                         imageName: "appetizers"
