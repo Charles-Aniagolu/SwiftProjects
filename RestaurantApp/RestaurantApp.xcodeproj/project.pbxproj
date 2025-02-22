@@ -28,7 +28,6 @@
 		22E4D1182D68A5860028AE49 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 22E4D0F82D68A5860028AE49 /* README.md */; };
 		22E4D1192D68A5860028AE49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E4D0ED2D68A5860028AE49 /* Assets.xcassets */; };
 		22E4D11A2D68A5860028AE49 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E4D0F52D68A5860028AE49 /* Preview Assets.xcassets */; };
-		22E4D11B2D68A5860028AE49 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 22E4D0FA2D68A5860028AE49 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +45,6 @@
 		22E4D0F72D68A5860028AE49 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		22E4D0F82D68A5860028AE49 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		22E4D0F92D68A5860028AE49 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
-		22E4D0FA2D68A5860028AE49 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		22E4D0FC2D68A5860028AE49 /* RestaurantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantApp.swift; sourceTree = "<group>"; };
 		22E4D0FE2D68A5860028AE49 /* RestaurantDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailView.swift; sourceTree = "<group>"; };
 		22E4D0FF2D68A5860028AE49 /* RestaurantListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantListView.swift; sourceTree = "<group>"; };
@@ -56,14 +54,6 @@
 		22E4D1032D68A5860028AE49 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		22E4D1042D68A5860028AE49 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		2218EA872D64AA3900CE14F6 /* RestaurantApp */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = RestaurantApp;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2218EA822D64AA3900CE14F6 /* Frameworks */ = {
@@ -92,7 +82,6 @@
 				22E4D0F72D68A5860028AE49 /* ProfileView.swift */,
 				22E4D0F82D68A5860028AE49 /* README.md */,
 				22E4D0F92D68A5860028AE49 /* Restaurant.swift */,
-				22E4D0FB2D68A5860028AE49 /* RestaurantApp */,
 				22E4D0FC2D68A5860028AE49 /* RestaurantApp.swift */,
 				22E4D0FE2D68A5860028AE49 /* RestaurantDetailView.swift */,
 				22E4D0FF2D68A5860028AE49 /* RestaurantListView.swift */,
@@ -101,7 +90,6 @@
 				22E4D1022D68A5860028AE49 /* Review.swift */,
 				22E4D1032D68A5860028AE49 /* User.swift */,
 				22E4D1042D68A5860028AE49 /* UserManager.swift */,
-				2218EA872D64AA3900CE14F6 /* RestaurantApp */,
 				2218EA862D64AA3900CE14F6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,14 +110,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		22E4D0FB2D68A5860028AE49 /* RestaurantApp */ = {
-			isa = PBXGroup;
-			children = (
-				22E4D0FA2D68A5860028AE49 /* .gitignore */,
-			);
-			path = RestaurantApp;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +124,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				2218EA872D64AA3900CE14F6 /* RestaurantApp */,
 			);
 			name = RestaurantApp;
 			packageProductDependencies = (
@@ -198,7 +175,6 @@
 				22E4D1182D68A5860028AE49 /* README.md in Resources */,
 				22E4D1192D68A5860028AE49 /* Assets.xcassets in Resources */,
 				22E4D11A2D68A5860028AE49 /* Preview Assets.xcassets in Resources */,
-				22E4D11B2D68A5860028AE49 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
