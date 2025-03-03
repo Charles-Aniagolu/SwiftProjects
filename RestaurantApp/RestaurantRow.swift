@@ -24,7 +24,7 @@ struct RestaurantRowView: View {
                     .clipShape(Circle())
                     .foregroundColor(.gray)
             }
-
+            
             VStack(alignment: .leading) {
                 Text(restaurant.name)
                     .font(.headline)

@@ -10,15 +10,18 @@
 
 import Foundation
 
-struct Order: Identifiable {
-    var id: UUID
-    var userId: UUID
-    var restaurantId: UUID
-    var dishes: [Dish]
-    var totalAmount: Double
-    var orderDate: Date
-    
+struct Order: Identifiable, Codable {
+    var id: UUID = UUID()
+    let dish: Dish
+    let restaurant: Restaurant
+    var quantity: Int
+    let orderDate: Date
+
+    var totalPrice: Double {
+        return dish.price * Double(quantity)
+    }
 }
+
 
 
 

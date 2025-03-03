@@ -10,10 +10,8 @@
 
 import Foundation
 
-
-struct Menu: Identifiable {
-    let id: UUID
-    let name: String
-    let dishes: [Dish]
-    let imageName: String
+struct Menu: Identifiable, Codable {
+    var id: UUID = UUID()
+    var name: String
+    var dishes: [Dish]
 }

@@ -10,8 +10,9 @@
 
 import Foundation
 
-struct Restaurant: Identifiable {
-    var id: UUID
+
+struct Restaurant: Identifiable, Codable, Hashable {
+    var id: UUID = UUID()
     var name: String
     var location: String
     var cuisine: String
@@ -19,4 +20,12 @@ struct Restaurant: Identifiable {
     var rating: Double
     var menus: [Menu]
     var imageName: String
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
+    static func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

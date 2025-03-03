@@ -6,14 +6,15 @@
 //
 
 // First - Define Models for the Restaurant app: User Model
-
 import Foundation
 
-struct User: Identifiable, Codable {
-    var id: UUID
+struct User: Identifiable {
+    var id: UUID = UUID()
     var name: String
     var email: String
-    var phoneNumber: String?
-    var address: String?
+    var phone: String?
+    var preferences: [String]
+    var orderHistoryIDs: [UUID] = []
+    var bio: String?
+    var joinedDate: Date = Date()
 }
-

@@ -11,10 +11,12 @@ import SwiftUI
 
 @main
 struct RestaurantApp: App {
+    @StateObject var viewModel = RestaurantViewModel()
+
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                .environmentObject(RestaurantViewModel()) // Inject the ViewModel
+                .environmentObject(viewModel)
         }
     }
 }

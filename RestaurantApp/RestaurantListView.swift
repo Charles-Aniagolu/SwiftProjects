@@ -7,36 +7,28 @@
 
 import SwiftUI
 
-
 struct RestaurantListView: View {
-    @StateObject var viewModel = RestaurantViewModel() // Observes data updates
+    @EnvironmentObject var viewModel: RestaurantViewModel
 
     var body: some View {
         NavigationView {
-            VStack {
-                // Picker for Cuisine Filtering
-                Picker("Filter by Cuisine", selection: $viewModel.selectedCuisine) {
-                    Text("All").tag(nil as String?)
-                    ForEach(viewModel.cuisineTypes, id: \.self) { cuisine in
-                        Text(cuisine).tag(cuisine as String?)
-                    }
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-
-                // List of Restaurants (Filtered)
-                List(viewModel.filteredRestaurants) { restaurant in
+            List {
+                ForEach(viewModel.restaurants) { restaurant in
                     HStack {
                         NavigationLink(destination: RestaurantDetailView(restaurant: restaurant)) {
                             HStack {
-                                // Circular Image for Restaurants
-                                Image(restaurant.imageName)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 50, height: 50)
-                                    .clipShape(Circle()) // Makes it a circle
-                                    .overlay(Circle().stroke(Color.gray, lineWidth: 1)) // Optional border
-                                    .shadow(radius: 2) // Adds subtle shadow
+                                if let image = UIImage(named: restaurant.imageName) {
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                        .clipShape(Circle())
+                                } else {
+                                    Image(systemName: "photo")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                        .clipShape(Circle())
+                                        .foregroundColor(.gray)
+                                }
 
                                 VStack(alignment: .leading) {
                                     Text(restaurant.name)
@@ -48,16 +40,15 @@ struct RestaurantListView: View {
                             }
                         }
                         Spacer()
-
-                        // Favorite Button
                         Button(action: {
                             viewModel.toggleFavorite(restaurant)
                         }) {
                             Image(systemName: viewModel.favorites.contains(restaurant.id) ? "heart.fill" : "heart")
-                                .foregroundColor(viewModel.favorites.contains(restaurant.id) ? .red : .gray)
+                                .foregroundColor(.red)
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        .buttonStyle(BorderlessButtonStyle()) // ✅ Prevents triggering NavigationLink
                     }
+                    .padding(.vertical, 5)
                 }
             }
             .navigationTitle("Restaurants")
@@ -65,9 +56,12 @@ struct RestaurantListView: View {
     }
 }
 
-
- 
-
+struct RestaurantListView_Previews: PreviewProvider {
+    static var previews: some View {
+        RestaurantListView()
+            .environmentObject(RestaurantViewModel())
+    }
+}
 
 
 

@@ -6,14 +6,14 @@
 //
 
 // First - Define Models for the Restaurant app: Dish Model
-
 import Foundation
 
-struct Dish: Identifiable {
-    let id: UUID
-    let name: String
-    let description: String
-    let ingredients: [String]
-    let price: Double
-    let imageName: String
+struct Dish: Identifiable, Codable {
+    var id: UUID = UUID()
+    var name: String
+    var description: String
+    var ingredients: [String]
+    var imageName: String
+    var price: Double
 }
+
