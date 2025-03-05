@@ -10,9 +10,8 @@
 
 import Foundation
 
-
 struct Restaurant: Identifiable, Codable, Hashable {
-    var id: UUID = UUID()
+    var id: UUID
     var name: String
     var location: String
     var cuisine: String
@@ -21,6 +20,7 @@ struct Restaurant: Identifiable, Codable, Hashable {
     var menus: [Menu]
     var imageName: String
 
+    // ✅ Properly conforming to Hashable
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

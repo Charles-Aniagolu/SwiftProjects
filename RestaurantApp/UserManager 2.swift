@@ -6,43 +6,36 @@
 //
 
 
-import Foundation
+import SwiftUI
 
-class UserManager {
-    static let shared = UserManager() // ✅ Add singleton instance
+class UserManager: ObservableObject {
+    @Published var currentUser: User?
+    private let userKey = "savedUser" // Key for storing user data in UserDefaults
 
-    private let favoritesKey = "favoriteRestaurants"
-
-    // Save favorites
-    func saveFavorites(_ favorites: Set<UUID>) {
-        let favoriteIDs = favorites.map { $0.uuidString }
-        UserDefaults.standard.set(favoriteIDs, forKey: favoritesKey)
+    init() {
+        loadUser()
     }
 
-    // Retrieve favorites
-    func getFavorites() -> Set<UUID> {
-        let favoriteIDs = UserDefaults.standard.array(forKey: favoritesKey) as? [String] ?? []
-        return Set(favoriteIDs.compactMap { UUID(uuidString: $0) })
-    }
-
-    // Add a new favorite
-    func addFavorite(_ id: UUID) {
-        var favorites = getFavorites()
-        if !favorites.contains(id) {
-            favorites.insert(id)
-            saveFavorites(favorites)
+    func saveUser(user: User) {
+        if let encodedUser = try? JSONEncoder().encode(user) {
+            UserDefaults.standard.set(encodedUser, forKey: userKey)
+            self.currentUser = user
         }
     }
 
-    // Remove a favorite
-    func removeFavorite(_ id: UUID) {
-        var favorites = getFavorites()
-        favorites.remove(id)
-        saveFavorites(favorites)
+    func loadUser() {
+        if let savedUser = UserDefaults.standard.data(forKey: userKey),
+           let decodedUser = try? JSONDecoder().decode(User.self, from: savedUser) {
+            DispatchQueue.main.async {
+                self.currentUser = decodedUser
+            }
+        }
     }
 
-    // Check if a restaurant is favorite
-    func isFavorite(_ id: UUID) -> Bool {
-        return getFavorites().contains(id)
+    func clearUser() {
+        UserDefaults.standard.removeObject(forKey: userKey)
+        DispatchQueue.main.async {
+            self.currentUser = nil
+        }
     }
 }

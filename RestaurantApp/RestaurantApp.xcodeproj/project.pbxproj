@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22CEDE2D2D770D6500E8BF27 /* MenuView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CEDE2C2D770D6500E8BF27 /* MenuView 2.swift */; };
 		22D9884D2D6A291800C17019 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D9884C2D6A291800C17019 /* FavoriteView.swift */; };
 		22DA95E02D70872100E8A4B6 /* UserManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA95DF2D70872100E8A4B6 /* UserManager 2.swift */; };
 		22E4D1072D68A5860028AE49 /* RestaurantRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E4D1002D68A5860028AE49 /* RestaurantRow.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		2218EA852D64AA3900CE14F6 /* RestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		22CEDE2C2D770D6500E8BF27 /* MenuView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuView 2.swift"; sourceTree = "<group>"; };
 		22D9884C2D6A291800C17019 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		22DA95DF2D70872100E8A4B6 /* UserManager 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserManager 2.swift"; sourceTree = "<group>"; };
 		22E4D0ED2D68A5860028AE49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				22E4D0EF2D68A5860028AE49 /* MainTabView.swift */,
 				22E4D0F02D68A5860028AE49 /* Menu.swift */,
 				22E4D0F12D68A5860028AE49 /* MenuView.swift */,
+				22CEDE2C2D770D6500E8BF27 /* MenuView 2.swift */,
 				22E4D0F22D68A5860028AE49 /* Order.swift */,
 				22E4D0F32D68A5860028AE49 /* OrderManager.swift */,
 				22E4D0F42D68A5860028AE49 /* OrderView.swift */,
@@ -201,6 +204,7 @@
 				22E4D1132D68A5860028AE49 /* User.swift in Sources */,
 				22E4D1142D68A5860028AE49 /* MainTabView.swift in Sources */,
 				22E4D1152D68A5860028AE49 /* MenuView.swift in Sources */,
+				22CEDE2D2D770D6500E8BF27 /* MenuView 2.swift in Sources */,
 				22E4D1162D68A5860028AE49 /* RestaurantApp.swift in Sources */,
 				22E4D1172D68A5860028AE49 /* OrderManager.swift in Sources */,
 			);

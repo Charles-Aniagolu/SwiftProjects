@@ -7,16 +7,25 @@
 
 import SwiftUI
 
-
 struct FavoriteView: View {
     @EnvironmentObject var viewModel: RestaurantViewModel
 
     var body: some View {
         NavigationView {
-            List(viewModel.favoriteRestaurants) { restaurant in
-                RestaurantRowView(restaurant: restaurant)
+            if viewModel.favoriteRestaurants.isEmpty {
+                VStack {
+                    Text("No favorites yet!")
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                        .padding()
+                }
+                .navigationTitle("Favorites")
+            } else {
+                List(viewModel.favoriteRestaurants) { restaurant in
+                    RestaurantRowView(restaurant: restaurant)
+                }
+                .navigationTitle("Favorites")
             }
-            .navigationTitle("Favorites")
         }
     }
 }

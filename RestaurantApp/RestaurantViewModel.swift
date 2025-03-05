@@ -34,74 +34,74 @@ class RestaurantViewModel: ObservableObject {
         loadFavorites()  // ✅ Load favorites before fetching restaurants
         fetchRestaurants()  // ✅ Then load restaurants
     }
-
+    
     
     func fetchRestaurants() {
         let sampleRestaurants: [Restaurant] = [
             Restaurant(
-                  id: UUID(),
-                  name: "La Trattoria",
-                  location: "123 Main Street, Helsinki",
-                  cuisine: "Italian",
-                  description: "Crispy bread with garlic butter",
-                  rating: 4.5,
-                  menus: [
-                      Menu(
-                         name: "Appetizers",
-                         dishes: [
-                               Dish(
-                                    name: "Garlic Bread",
-                                    description: "Crispy bread with garlic butter",
-                                    ingredients: ["Flour", "Garlic Butter", "Parsley"],
-                                    imageName: "garlic_bread",
-                                    price: 12.99
-                                ),
-                                Dish(
-                                    name: "Bruschetta",
-                                    description: "Toasted bread with tomatoes and basil",
-                                    ingredients: ["Bread", "Tomatoes", "Basil", "Olive Oil"],
-                                    imageName: "bruschetta",
-                                           price: 14.99
-                                       )
-                                   ]
-                               ),
-                               Menu(
-                                   name: "Pasta",
-                                   dishes: [
-                                       Dish(
-                                           name: "Spaghetti Carbonara",
-                                           description: "Creamy pasta with bacon and egg",
-                                           ingredients: ["Spaghetti", "Egg", "Bacon", "Parmesan"],
-                                           imageName: "spaghetti_carbonara",
-                                           price: 15.99
-                                       ),
-                                       Dish(
-                                           name: "Lasagna",
-                                           description: "Layered pasta with meat sauce and cheese",
-                                           ingredients: ["Lasagna Noodles", "Ground Beef", "Tomato Sauce", "Cheese"],
-                                           imageName: "lasagna",
-                                           price: 15.99
-                                       )
-                                   ]
-                               )
-                           ],
-                           imageName: "la_trattoria"
-                       ),
+                id: UUID(),
+                name: "La Trattoria",
+                location: "123 Main Street, Helsinki",
+                cuisine: "Italian",
+                description: "Crispy bread with garlic butter",
+                rating: 4.5,
+                menus: [
+                    Menu(
+                        name: "Appetizers",
+                        dishes: [
+                            Dish(
+                                name: "Garlic Bread",
+                                description: "Crispy bread with garlic butter",
+                                ingredients: ["Flour", "Garlic Butter", "Parsley"],
+                                imageName: "garlic_bread",
+                                price: 12.99
+                            ),
+                            Dish(
+                                name: "Bruschetta",
+                                description: "Toasted bread with tomatoes and basil",
+                                ingredients: ["Bread", "Tomatoes", "Basil", "Olive Oil"],
+                                imageName: "bruschetta",
+                                price: 14.99
+                            )
+                        ]
+                    ),
+                    Menu(
+                        name: "Pasta",
+                        dishes: [
+                            Dish(
+                                name: "Spaghetti Carbonara",
+                                description: "Creamy pasta with bacon and egg",
+                                ingredients: ["Spaghetti", "Egg", "Bacon", "Parmesan"],
+                                imageName: "spaghetti_carbonara",
+                                price: 15.99
+                            ),
+                            Dish(
+                                name: "Lasagna",
+                                description: "Layered pasta with meat sauce and cheese",
+                                ingredients: ["Lasagna Noodles", "Ground Beef", "Tomato Sauce", "Cheese"],
+                                imageName: "lasagna",
+                                price: 15.99
+                            )
+                        ]
+                    )
+                ],
+                imageName: "la_trattoria"
+            ),
             
             
             
             Restaurant(
-                    id: UUID(),
-                    name: "Sushi Haven",
-                    location: "45 Ocean Blvd, Espoo",
-                    cuisine: "Japanese",
-                    description: "Crab, avocado, cucumber, and sesame seeds",
-                    rating: 6.2,
-                    menus: [
-                        Menu(
-                            name: "Sushi Rolls",
-                            dishes: [
-                                Dish(
+                id: UUID(),
+                name: "Sushi Haven",
+                location: "45 Ocean Blvd, Espoo",
+                cuisine: "Japanese",
+                description: "Crab, avocado, cucumber, and sesame seeds",
+                rating: 6.2,
+                menus: [
+                    Menu(
+                        name: "Sushi Rolls",
+                        dishes: [
+                            Dish(
                                 name: "Salmon Nigiri",
                                 description: "Fresh salmon served on vinegared rice",
                                 ingredients: ["Salmon", "Sushi Rice", "Soy Sauce", "Wasabi"],
@@ -115,32 +115,32 @@ class RestaurantViewModel: ObservableObject {
                                 imageName: "california_roll",
                                 price: 6.99
                                 
-                                        )
-                                    ]
-                                ),
-                        Menu(
-                            name: "Appetizers",
-                            dishes: [
-                                  Dish(
-                                      name: "Miso Soup",
-                                      description: "Traditional Japanese soup with tofu and seaweed",
-                                      ingredients: ["Miso Paste", "Dashi Stock", "Tofu", "Seaweed", "Green Onions"],
-                                      imageName: "miso_soup",
-                                      price: 12.99
-                                    ),
-                                    Dish(
-                                        name: "Edamame",
-                                        description: "Steamed soybeans with sea salt",
-                                        ingredients: ["Edamame", "Sea Salt"],
-                                        imageName: "edamame",
-                                        price: 18.99
-                                        )
-                                    ]
-                                )
-                            ],
-                            imageName: "sushi_haven"
-                        ),
-
+                            )
+                        ]
+                    ),
+                    Menu(
+                        name: "Appetizers",
+                        dishes: [
+                            Dish(
+                                name: "Miso Soup",
+                                description: "Traditional Japanese soup with tofu and seaweed",
+                                ingredients: ["Miso Paste", "Dashi Stock", "Tofu", "Seaweed", "Green Onions"],
+                                imageName: "miso_soup",
+                                price: 12.99
+                            ),
+                            Dish(
+                                name: "Edamame",
+                                description: "Steamed soybeans with sea salt",
+                                ingredients: ["Edamame", "Sea Salt"],
+                                imageName: "edamame",
+                                price: 18.99
+                            )
+                        ]
+                    )
+                ],
+                imageName: "sushi_haven"
+            ),
+            
             
             Restaurant(
                 id: UUID(),
@@ -196,62 +196,41 @@ class RestaurantViewModel: ObservableObject {
         
         DispatchQueue.main.async {
                    self.restaurants = sampleRestaurants
-                   self.syncFavorites()  // ✅ Sync favorites after loading restaurants
+                   self.loadFavorites() // ✅ Load favorites AFTER restaurants are available
                }
            }
-           
+
            var favoriteRestaurants: [Restaurant] {
                restaurants.filter { favorites.contains($0.id) }
            }
-           
+
+           // ✅ Save Favorites to UserDefaults
            private func saveFavorites() {
                let favoriteIDs = favorites.map { $0.uuidString }
                UserDefaults.standard.set(favoriteIDs, forKey: favoritesKey)
-               UserDefaults.standard.synchronize() // ✅ Ensure it is written immediately
-               print("✅ Favorites Saved: \(favoriteIDs)") // ✅ Debugging
+               UserDefaults.standard.synchronize() // ✅ Ensures immediate save
            }
-           
+
+           // ✅ Load Favorites from UserDefaults AFTER restaurants are loaded
            private func loadFavorites() {
-               if let favoriteIDs = UserDefaults.standard.array(forKey: favoritesKey) as? [String] {
-                   let uuidFavorites = Set(favoriteIDs.compactMap { UUID(uuidString: $0) })
-                   DispatchQueue.main.async {
-                       self.favorites = uuidFavorites
-                       print("🔄 Favorites Loaded: \(uuidFavorites)") // ✅ Debugging
-                       self.syncFavorites() // ✅ Ensure syncing after loading
+               DispatchQueue.global(qos: .background).async {
+                   if let favoriteIDs = UserDefaults.standard.array(forKey: self.favoritesKey) as? [String] {
+                       let uuidFavorites = Set(favoriteIDs.compactMap { UUID(uuidString: $0) })
+
+                       DispatchQueue.main.async {
+                           self.favorites = uuidFavorites
+                       }
                    }
-               } else {
-                   print("⚠️ No favorites found in UserDefaults.")
                }
            }
-           
-           private func syncFavorites() {
-               let updatedFavorites: Set<UUID> = favorites.filter { id in
-                   return restaurants.contains { $0.id == id } // ✅ Only keep favorites that exist in the restaurant list
-               }
-               favorites = updatedFavorites // ✅ Ensure only valid favorites are kept
-               print("🔄 Synced Favorites: \(favorites)") // ✅ Debugging
-           }
-           
-           var cuisineTypes: [String] {
-               let allCuisines = restaurants.map { $0.cuisine }
-               return Array(Set(allCuisines)).sorted()
-           }
-           
-           var filteredRestaurants: [Restaurant] {
-               if let selectedCuisine = selectedCuisine, !selectedCuisine.isEmpty {
-                   return restaurants.filter { $0.cuisine == selectedCuisine }
-               }
-               return restaurants
-           }
-           
+
+           // ✅ Toggle Favorite Restaurant
            func toggleFavorite(_ restaurant: Restaurant) {
                if favorites.contains(restaurant.id) {
                    favorites.remove(restaurant.id)
-                   print("❌ Removed from Favorites: \(restaurant.id)") // ✅ Debugging
                } else {
                    favorites.insert(restaurant.id)
-                   print("❤️ Added to Favorites: \(restaurant.id)") // ✅ Debugging
                }
-               saveFavorites()
+               saveFavorites() // ✅ Ensure favorites persist after toggle
            }
        }
