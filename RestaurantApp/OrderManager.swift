@@ -45,7 +45,7 @@ class OrderManager: ObservableObject {
         if let savedOrders = UserDefaults.standard.data(forKey: ordersKey),
            let decodedOrders = try? JSONDecoder().decode([Order].self, from: savedOrders) {
             DispatchQueue.main.async {
-                self.orders = decodedOrders // ✅ Ensure UI updates on main thread
+                self.orders = decodedOrders // Ensure UI updates on main thread
             }
         }
     }

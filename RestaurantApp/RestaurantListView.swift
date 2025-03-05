@@ -21,7 +21,7 @@ struct RestaurantListView: View {
                     
                     Spacer()
                     
-                    favoriteButton(for: restaurant) // ✅ Favorite Button
+                    favoriteButton(for: restaurant) // Favorite Button
                 }
                 .padding(.vertical, 8)
             }
@@ -61,12 +61,12 @@ struct RestaurantListView: View {
 
     private func favoriteButton(for restaurant: Restaurant) -> some View {
         Button(action: {
-            viewModel.toggleFavorite(restaurant) // ✅ Save Favorite Status
+            viewModel.toggleFavorite(restaurant) // Save Favorite Status
         }) {
             Image(systemName: viewModel.favorites.contains(restaurant.id) ? "heart.fill" : "heart")
                 .foregroundColor(.red)
         }
-        .buttonStyle(BorderlessButtonStyle()) // ✅ Prevents unintended NavigationLink activation
+        .buttonStyle(BorderlessButtonStyle()) // Prevents unintended NavigationLink activation
     }
 }
 

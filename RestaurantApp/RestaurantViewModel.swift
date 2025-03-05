@@ -196,7 +196,7 @@ class RestaurantViewModel: ObservableObject {
         
         DispatchQueue.main.async {
                    self.restaurants = sampleRestaurants
-                   self.loadFavorites() // ✅ Load favorites AFTER restaurants are available
+                   self.loadFavorites() // Load favorites AFTER restaurants are available
                }
            }
 
@@ -204,14 +204,14 @@ class RestaurantViewModel: ObservableObject {
                restaurants.filter { favorites.contains($0.id) }
            }
 
-           // ✅ Save Favorites to UserDefaults
+           // Save Favorites to UserDefaults
            private func saveFavorites() {
                let favoriteIDs = favorites.map { $0.uuidString }
                UserDefaults.standard.set(favoriteIDs, forKey: favoritesKey)
-               UserDefaults.standard.synchronize() // ✅ Ensures immediate save
+               UserDefaults.standard.synchronize() // Ensures immediate save
            }
 
-           // ✅ Load Favorites from UserDefaults AFTER restaurants are loaded
+           // Load Favorites from UserDefaults AFTER restaurants are loaded
            private func loadFavorites() {
                DispatchQueue.global(qos: .background).async {
                    if let favoriteIDs = UserDefaults.standard.array(forKey: self.favoritesKey) as? [String] {
@@ -224,13 +224,13 @@ class RestaurantViewModel: ObservableObject {
                }
            }
 
-           // ✅ Toggle Favorite Restaurant
+           // Toggle Favorite Restaurant
            func toggleFavorite(_ restaurant: Restaurant) {
                if favorites.contains(restaurant.id) {
                    favorites.remove(restaurant.id)
                } else {
                    favorites.insert(restaurant.id)
                }
-               saveFavorites() // ✅ Ensure favorites persist after toggle
+               saveFavorites() // Ensure favorites persist after toggle
            }
        }

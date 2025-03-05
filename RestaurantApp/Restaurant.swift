@@ -20,7 +20,7 @@ struct Restaurant: Identifiable, Codable, Hashable {
     var menus: [Menu]
     var imageName: String
 
-    // ✅ Properly conforming to Hashable
+    // Properly conforming to Hashable
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }

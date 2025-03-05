@@ -10,7 +10,7 @@ import SwiftUI
 struct RestaurantDetailView: View {
     let restaurant: Restaurant
     @EnvironmentObject var orderManager: OrderManager
-    @State private var showConfirmation = false // ✅ State variable for confirmation message
+    @State private var showConfirmation = false // State variable for confirmation message
     
     var body: some View {
         ScrollView {
@@ -25,7 +25,7 @@ struct RestaurantDetailView: View {
         }
         .navigationTitle("Restaurant Details")
         .navigationBarTitleDisplayMode(.inline)
-        .alert(isPresented: $showConfirmation) { // ✅ Show alert when item is added
+        .alert(isPresented: $showConfirmation) { // Show alert when item is added
             Alert(title: Text("Added to Order"), message: Text("Your dish has been added successfully."), dismissButton: .default(Text("OK")))
         }
     }
@@ -49,7 +49,7 @@ struct RestaurantDetailView: View {
                 .padding(.horizontal, 15)
                 .onAppear {
                     if UIImage(named: restaurant.imageName) == nil {
-                        print("⚠️ Image \(restaurant.imageName) not found!")
+                        print(" Image \(restaurant.imageName) not found!")
                     }
                 }
         }
@@ -118,7 +118,7 @@ struct RestaurantDetailView: View {
                     orderManager.addToOrder(dish: dish, restaurant: restaurant)
                     showConfirmation = true
                     
-                    // ✅ Haptic Feedback when adding an order
+                    // Haptic Feedback when adding an order
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                     
                 }) {
