@@ -8,20 +8,36 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var user = User(name: "John Doe", email: "john@example.com", preferences: ["Vegan"])
+    @EnvironmentObject var authManager: AuthManager // Access authentication state
 
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Name: \(user.name)")
-                    .font(.title2)
-                Text("Email: \(user.email)")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                Text("Preferences: \(user.preferences.joined(separator: ", "))")
-                    .font(.subheadline)
+            VStack(alignment: .leading, spacing: 15) {
+                if let user = authManager.currentUser {
+                    Text("Name: \(user.name)")
+                        .font(.title2)
+                    Text("Email: \(user.email)")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
 
-                Spacer()
+                    Spacer()
+
+                    Button(action: {
+                        authManager.logout() // Logout action
+                    }) {
+                        Text("Logout")
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.red)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                } else {
+                    Text("No user logged in")
+                        .font(.title2)
+                        .foregroundColor(.gray)
+                }
             }
             .padding()
             .navigationTitle("Profile")

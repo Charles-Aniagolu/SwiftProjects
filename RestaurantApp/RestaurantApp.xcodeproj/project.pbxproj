@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		225DBAFD2D7894DD00BC8247 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225DBAFC2D7894DD00BC8247 /* AuthManager.swift */; };
+		225DBAFF2D78986300BC8247 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225DBAFE2D78986300BC8247 /* AuthView.swift */; };
 		22CEDE2D2D770D6500E8BF27 /* MenuView 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CEDE2C2D770D6500E8BF27 /* MenuView 2.swift */; };
 		22D9884D2D6A291800C17019 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D9884C2D6A291800C17019 /* FavoriteView.swift */; };
 		22DA95E02D70872100E8A4B6 /* UserManager 2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DA95DF2D70872100E8A4B6 /* UserManager 2.swift */; };
@@ -33,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		2218EA852D64AA3900CE14F6 /* RestaurantApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestaurantApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		225DBAFC2D7894DD00BC8247 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		225DBAFE2D78986300BC8247 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		22CEDE2C2D770D6500E8BF27 /* MenuView 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MenuView 2.swift"; sourceTree = "<group>"; };
 		22D9884C2D6A291800C17019 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		22DA95DF2D70872100E8A4B6 /* UserManager 2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserManager 2.swift"; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 		2218EA7C2D64AA3900CE14F6 = {
 			isa = PBXGroup;
 			children = (
+				225DBAFE2D78986300BC8247 /* AuthView.swift */,
+				225DBAFC2D7894DD00BC8247 /* AuthManager.swift */,
 				22D9884C2D6A291800C17019 /* FavoriteView.swift */,
 				22E4D0ED2D68A5860028AE49 /* Assets.xcassets */,
 				22E4D0EE2D68A5860028AE49 /* Dish.swift */,
@@ -197,10 +203,12 @@
 				22E4D10E2D68A5860028AE49 /* Order.swift in Sources */,
 				22D9884D2D6A291800C17019 /* FavoriteView.swift in Sources */,
 				22E4D10F2D68A5860028AE49 /* RestaurantListView.swift in Sources */,
+				225DBAFD2D7894DD00BC8247 /* AuthManager.swift in Sources */,
 				22DA95E02D70872100E8A4B6 /* UserManager 2.swift in Sources */,
 				22E4D1102D68A5860028AE49 /* RestaurantViewModel.swift in Sources */,
 				22E4D1112D68A5860028AE49 /* ProfileView.swift in Sources */,
 				22E4D1122D68A5860028AE49 /* Restaurant.swift in Sources */,
+				225DBAFF2D78986300BC8247 /* AuthView.swift in Sources */,
 				22E4D1132D68A5860028AE49 /* User.swift in Sources */,
 				22E4D1142D68A5860028AE49 /* MainTabView.swift in Sources */,
 				22E4D1152D68A5860028AE49 /* MenuView.swift in Sources */,

@@ -13,14 +13,20 @@ import SwiftUI
 struct RestaurantApp: App {
     @StateObject var orderManager = OrderManager()
     @StateObject var userManager = UserManager()
-    @StateObject var restaurantViewModel = RestaurantViewModel() // ✅ Single instance
+    @StateObject var restaurantViewModel = RestaurantViewModel() // Single instance
+    @StateObject var authManager = AuthManager()
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-                .environmentObject(orderManager)
-                .environmentObject(userManager)
-                .environmentObject(restaurantViewModel) // ✅ Inject RestaurantViewModel globally
+            if authManager.isAuthenticated {
+                MainTabView()
+                
+                    .environmentObject(authManager) // inject authentication
+                    .environmentObject(orderManager)
+                    .environmentObject(userManager)
+                    .environmentObject(restaurantViewModel) // Inject RestaurantViewModel globally
+            }
+            
         }
     }
 }
