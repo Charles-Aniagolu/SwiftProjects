@@ -10,7 +10,7 @@ import SwiftUI
 
 class UserManager: ObservableObject {
     @Published var currentUser: User?
-    private let userKey = "savedUser" // Key for storing user data in UserDefaults
+    private let userKey = "savedUser"
 
     init() {
         loadUser()
@@ -19,7 +19,9 @@ class UserManager: ObservableObject {
     func saveUser(user: User) {
         if let encodedUser = try? JSONEncoder().encode(user) {
             UserDefaults.standard.set(encodedUser, forKey: userKey)
-            self.currentUser = user
+            DispatchQueue.main.async {
+                self.currentUser = user // Ensures UI updates properly
+            }
         }
     }
 

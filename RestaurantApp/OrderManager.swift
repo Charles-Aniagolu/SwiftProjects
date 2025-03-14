@@ -13,7 +13,7 @@ import SwiftUI
 
 class OrderManager: ObservableObject {
     @Published var orders: [Order] = []
-    private let ordersKey = "savedOrders" // Key for saving orders in UserDefaults
+    private let ordersKey = "savedOrders"
 
     init() {
         loadOrders()
@@ -32,12 +32,15 @@ class OrderManager: ObservableObject {
 
     func clearOrders() {
         orders.removeAll()
-        saveOrders()
+        saveOrders() // Ensure persistence after clearing
     }
 
-    private func saveOrders() {
+    func saveOrders() {
         if let encodedOrders = try? JSONEncoder().encode(orders) {
             UserDefaults.standard.set(encodedOrders, forKey: ordersKey)
+            DispatchQueue.main.async {
+                self.objectWillChange.send() // Trigger UI updates
+            }
         }
     }
 
@@ -45,7 +48,7 @@ class OrderManager: ObservableObject {
         if let savedOrders = UserDefaults.standard.data(forKey: ordersKey),
            let decodedOrders = try? JSONDecoder().decode([Order].self, from: savedOrders) {
             DispatchQueue.main.async {
-                self.orders = decodedOrders // Ensure UI updates on main thread
+                self.orders = decodedOrders
             }
         }
     }

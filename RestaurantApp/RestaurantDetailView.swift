@@ -4,14 +4,13 @@
 //
 //  Created by Charles Nebo on 18.2.2025.
 //
-
 import SwiftUI
 
 struct RestaurantDetailView: View {
     let restaurant: Restaurant
     @EnvironmentObject var orderManager: OrderManager
     @State private var showConfirmation = false // State variable for confirmation message
-    
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 15) {
@@ -25,12 +24,14 @@ struct RestaurantDetailView: View {
         }
         .navigationTitle("Restaurant Details")
         .navigationBarTitleDisplayMode(.inline)
-        .alert(isPresented: $showConfirmation) { // Show alert when item is added
-            Alert(title: Text("Added to Order"), message: Text("Your dish has been added successfully."), dismissButton: .default(Text("OK")))
+        .alert(isPresented: $showConfirmation) {
+            Alert(title: Text("Added to Order"),
+                  message: Text("Your dish has been added successfully."),
+                  dismissButton: .default(Text("OK")))
         }
     }
     
-    // MARK: - Components
+    // MARK: - 🖼 Restaurant Image View
     private func restaurantImageView() -> some View {
         ZStack(alignment: .center) {
             Rectangle()
@@ -49,23 +50,26 @@ struct RestaurantDetailView: View {
                 .padding(.horizontal, 15)
                 .onAppear {
                     if UIImage(named: restaurant.imageName) == nil {
-                        print(" Image \(restaurant.imageName) not found!")
+                        print("⚠️ Image \(restaurant.imageName) not found!")
                     }
                 }
         }
         .padding(.top, 10)
     }
     
+    // MARK: - ℹ️ Restaurant Info View
     private func restaurantInfoView() -> some View {
         VStack(alignment: .leading) {
             Text(restaurant.name)
                 .font(.largeTitle)
                 .bold()
                 .padding(.horizontal)
+            
             Text(restaurant.cuisine)
                 .font(.title2)
                 .foregroundColor(.gray)
                 .padding(.horizontal)
+            
             HStack {
                 Image(systemName: "star.fill")
                     .foregroundColor(.yellow)
@@ -76,12 +80,14 @@ struct RestaurantDetailView: View {
         }
     }
     
+    // MARK: - 📜 Restaurant Description View
     private func restaurantDescriptionView() -> some View {
         Text(restaurant.description)
             .font(.body)
             .padding(.horizontal)
     }
     
+    // MARK: - 🍽 Menu List View
     private func menuListView() -> some View {
         VStack(alignment: .leading, spacing: 10) {
             ForEach(restaurant.menus) { menu in
@@ -90,6 +96,7 @@ struct RestaurantDetailView: View {
                         .font(.title3)
                         .bold()
                         .padding(.horizontal)
+                    
                     ForEach(menu.dishes) { dish in
                         dishRowView(dish: dish)
                     }
@@ -98,6 +105,7 @@ struct RestaurantDetailView: View {
         }
     }
     
+    // MARK: - 🍕 Dish Row View
     private func dishRowView(dish: Dish) -> some View {
         HStack {
             VStack(alignment: .leading) {
@@ -109,18 +117,17 @@ struct RestaurantDetailView: View {
                     .foregroundColor(.gray)
             }
             .padding(.horizontal)
+            
             Spacer()
+            
             VStack {
                 Text("€\(dish.price, specifier: "%.2f")")
                     .font(.subheadline)
                     .foregroundColor(.gray)
+                
                 Button(action: {
                     orderManager.addToOrder(dish: dish, restaurant: restaurant)
                     showConfirmation = true
-                    
-                    // Haptic Feedback when adding an order
-                    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
-                    
                 }) {
                     Text("Add to Order")
                         .font(.caption)
@@ -128,6 +135,9 @@ struct RestaurantDetailView: View {
                         .background(Color.blue)
                         .foregroundColor(.white)
                         .cornerRadius(8)
+                }
+                .onAppear {
+                    UIImpactFeedbackGenerator(style: .medium).impactOccurred() // Haptic feedback
                 }
             }
         }

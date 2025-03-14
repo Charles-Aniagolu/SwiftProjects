@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OrderView: View {
-    @EnvironmentObject var orderManager: OrderManager // Correctly references the shared OrderManager
+    @EnvironmentObject var orderManager: OrderManager
 
     var body: some View {
         NavigationView {
@@ -37,7 +37,7 @@ struct OrderView: View {
                                     .foregroundColor(.blue)
                             }
                         }
-                        .onDelete(perform: deleteOrder)
+                        .onDelete(perform: deleteOrder) // Fix deletion issue
                     }
                 }
             }
@@ -47,8 +47,8 @@ struct OrderView: View {
 
     private func deleteOrder(at offsets: IndexSet) {
         offsets.forEach { index in
-            let order = orderManager.orders[index]
-            orderManager.removeFromOrder(order: order) // Correctly uses removeFromOrder function
+            orderManager.orders.remove(at: index) // Correct removal of order
         }
+        orderManager.saveOrders() // Ensure order list updates
     }
 }

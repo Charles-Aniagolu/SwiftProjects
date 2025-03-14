@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct AuthView: View {
     @EnvironmentObject var authManager: AuthManager
     @State private var email = ""
@@ -45,12 +46,14 @@ struct AuthView: View {
             Button(action: {
                 if isRegistering {
                     if authManager.register(email: email, password: password, name: name) {
+                        authManager.isAuthenticated = true // Ensure login state updates
                         errorMessage = ""
                     } else {
                         errorMessage = "Invalid registration details"
                     }
                 } else {
                     if authManager.login(email: email, password: password) {
+                        authManager.isAuthenticated = true
                         errorMessage = ""
                     } else {
                         errorMessage = "Invalid email or password"

@@ -28,13 +28,11 @@ class RestaurantViewModel: ObservableObject {
     }
     
     private let favoritesKey = "favoriteRestaurants"
-    
+
     init() {
         print("🔄 Initializing RestaurantViewModel")
-        loadFavorites()  // ✅ Load favorites before fetching restaurants
-        fetchRestaurants()  // ✅ Then load restaurants
+        fetchRestaurants()  // First, load restaurants
     }
-    
     
     func fetchRestaurants() {
         let sampleRestaurants: [Restaurant] = [
@@ -43,7 +41,7 @@ class RestaurantViewModel: ObservableObject {
                 name: "La Trattoria",
                 location: "123 Main Street, Helsinki",
                 cuisine: "Italian",
-                description: "Crispy bread with garlic butter",
+                description: "A classic Italian restaurant serving traditional dishes and pasta.",
                 rating: 4.5,
                 menus: [
                     Menu(
@@ -95,7 +93,7 @@ class RestaurantViewModel: ObservableObject {
                 name: "Sushi Haven",
                 location: "45 Ocean Blvd, Espoo",
                 cuisine: "Japanese",
-                description: "Crab, avocado, cucumber, and sesame seeds",
+                description: "Tasty Japanese Sushi",
                 rating: 6.2,
                 menus: [
                     Menu(
@@ -155,18 +153,51 @@ class RestaurantViewModel: ObservableObject {
                         name: "Classic Burgers",
                         dishes: [
                             Dish(
-                                id: UUID(),
                                 name: "Cheeseburger",
                                 description: "Juicy beef patty with melted cheese",
                                 ingredients: ["Beef Patty", "Cheese", "Lettuce", "Tomato", "Burger Bun"],
                                 imageName: "cheeseburger",
                                 price: 8.99
+                            ),
+                            Dish(
+                                name: "Bacon Burger",
+                                description: "Beef patty with crispy bacon and BBQ sauce",
+                                ingredients: ["Beef Patty", "Bacon", "BBQ Sauce", "Burger Bun"],
+                                imageName: "bacon_burger",
+                                price: 10.99
+                            ),
+                            Dish(
+                                name: "Veggie Burger",
+                                description: "A delicious vegetarian burger with fresh lettuce, tomato, and a special veggie patty.",
+                                ingredients: ["Veggie Patty", "Lettuce", "Tomato", "Onion", "Burger Bun"],
+                                imageName: "veggie_burger",
+                                price: 8.99
+                            )
+                        ]
+                    ),
+                    Menu(
+                        name: "Sides & Drinks",
+                        dishes: [
+                            Dish(
+                                name: "French Fries",
+                                description: "Crispy golden fries",
+                                ingredients: ["Potatoes", "Salt", "Oil"],
+                                imageName: "french_fries",
+                                price: 2.99
+                            ),
+                            Dish(
+                                name: "Onion Rings",
+                                description: "Crispy battered onion rings",
+                                ingredients: ["Onion", "Flour", "Breadcrumbs", "Oil"],
+                                imageName: "onion_rings",
+                                price: 3.99
                             )
                         ]
                     )
                 ],
                 imageName: "burger_bistro"
             ),
+            
             Restaurant(
                 id: UUID(),
                 name: "Cafe Delight",
@@ -176,16 +207,40 @@ class RestaurantViewModel: ObservableObject {
                 rating: 9.2,
                 menus: [
                     Menu(
-                        id: UUID(),
+                        name: "Beverages",
+                        dishes: [
+                            Dish(
+                                name: "Herbal Tea",
+                                description: "Calming blend of chamomile and mint",
+                                ingredients: ["Herbal Tea Leaves", "Water", "Honey", "Lemon"],
+                                imageName: "herbal_tea",
+                                price: 3.50
+                            ),
+                            Dish(
+                                name: "Cappuccino",
+                                description: "Rich espresso with steamed milk and foam",
+                                ingredients: ["Espresso", "Milk"],
+                                imageName: "cappuccino",
+                                price: 4.50
+                            )
+                        ]
+                    ),
+                    Menu(
                         name: "Desserts",
                         dishes: [
                             Dish(
-                                id: UUID(),
                                 name: "Chocolate Cake",
                                 description: "Rich and moist chocolate cake",
-                                ingredients: ["Flour", "Cocoa Powder", "Sugar", "Eggs", "Butter"],
+                                ingredients: ["Flour", "Cocoa Powder", "Sugar", "Eggs", "Butter", "Baking Powder", "Milk", "Vanilla Extract", "Salt"],
                                 imageName: "chocolate_cake",
-                                price: 4.99
+                                price: 2.99
+                            ),
+                            Dish(
+                                name: "Berry Tart",
+                                description: "Crispy tart with fresh berries and cream",
+                                ingredients: ["Flour", "Butter", "Berries", "Sugar", "Lemon Juice"],
+                                imageName: "berry_tart",
+                                price: 4.00
                             )
                         ]
                     )
@@ -195,42 +250,38 @@ class RestaurantViewModel: ObservableObject {
         ]
         
         DispatchQueue.main.async {
-                   self.restaurants = sampleRestaurants
-                   self.loadFavorites() // Load favorites AFTER restaurants are available
-               }
-           }
+                    self.restaurants = sampleRestaurants
+                    self.loadFavorites() // Load favorites AFTER restaurants are available
+                }
+            }
 
-           var favoriteRestaurants: [Restaurant] {
-               restaurants.filter { favorites.contains($0.id) }
-           }
+            var favoriteRestaurants: [Restaurant] {
+                restaurants.filter { favorites.contains($0.id) }
+            }
 
-           // Save Favorites to UserDefaults
-           private func saveFavorites() {
-               let favoriteIDs = favorites.map { $0.uuidString }
-               UserDefaults.standard.set(favoriteIDs, forKey: favoritesKey)
-               UserDefaults.standard.synchronize() // Ensures immediate save
-           }
+            private func saveFavorites() {
+                let favoriteIDs = favorites.map { $0.uuidString }
+                UserDefaults.standard.set(favoriteIDs, forKey: favoritesKey)
+            }
 
-           // Load Favorites from UserDefaults AFTER restaurants are loaded
-           private func loadFavorites() {
-               DispatchQueue.global(qos: .background).async {
-                   if let favoriteIDs = UserDefaults.standard.array(forKey: self.favoritesKey) as? [String] {
-                       let uuidFavorites = Set(favoriteIDs.compactMap { UUID(uuidString: $0) })
+            private func loadFavorites() {
+                DispatchQueue.global(qos: .background).async {
+                    if let favoriteIDs = UserDefaults.standard.array(forKey: self.favoritesKey) as? [String] {
+                        let uuidFavorites = Set(favoriteIDs.compactMap { UUID(uuidString: $0) })
 
-                       DispatchQueue.main.async {
-                           self.favorites = uuidFavorites
-                       }
-                   }
-               }
-           }
+                        DispatchQueue.main.async {
+                            self.favorites = uuidFavorites
+                        }
+                    }
+                }
+            }
 
-           // Toggle Favorite Restaurant
-           func toggleFavorite(_ restaurant: Restaurant) {
-               if favorites.contains(restaurant.id) {
-                   favorites.remove(restaurant.id)
-               } else {
-                   favorites.insert(restaurant.id)
-               }
-               saveFavorites() // Ensure favorites persist after toggle
-           }
-       }
+            func toggleFavorite(_ restaurant: Restaurant) {
+                if favorites.contains(restaurant.id) {
+                    favorites.remove(restaurant.id)
+                } else {
+                    favorites.insert(restaurant.id)
+                }
+                saveFavorites()
+            }
+        }

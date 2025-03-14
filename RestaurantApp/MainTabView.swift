@@ -1,42 +1,46 @@
+
+
 import SwiftUI
 
 struct MainTabView: View {
+    @StateObject private var authManager = AuthManager()
     @StateObject private var orderManager = OrderManager()
     @StateObject private var restaurantViewModel = RestaurantViewModel()
 
     var body: some View {
-        TabView {
-            NavigationView {
+        NavigationView { // ✅ Wrap the entire TabView inside NavigationView
+            TabView {
+                // ✅ Restaurants Tab
                 RestaurantListView()
-            }
-            .tabItem {
-                Label("Restaurants", systemImage: "list.dash")
-            }
-            .environmentObject(restaurantViewModel)
-            .environmentObject(orderManager)
+                    .tabItem {
+                        Label("Restaurants", systemImage: "list.dash")
+                    }
+                    .environmentObject(restaurantViewModel)
+                    .environmentObject(orderManager)
 
-            NavigationView {
+                // ✅ Favorites Tab
                 FavoriteView()
-            }
-            .tabItem {
-                Label("Favorites", systemImage: "heart.fill")
-            }
-            .environmentObject(restaurantViewModel)
+                    .tabItem {
+                        Label("Favorites", systemImage: "heart.fill")
+                    }
+                    .environmentObject(restaurantViewModel)
 
-            NavigationView {
+                // ✅ Orders Tab
                 OrderView()
-            }
-            .tabItem {
-                Label("Orders", systemImage: "cart.fill")
-            }
-            .environmentObject(orderManager)
+                    .tabItem {
+                        Label("Orders", systemImage: "cart.fill")
+                    }
+                    .environmentObject(orderManager)
 
-            NavigationView {
+                // ✅ Profile Tab
                 ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.fill")
+                    }
+                    .environmentObject(authManager)
             }
-            .tabItem {
-                Label("Profile", systemImage: "person.fill")
-            }
+            .navigationBarTitle("Restaurants") // ✅ Ensures title is visible
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

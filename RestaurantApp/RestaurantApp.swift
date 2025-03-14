@@ -11,22 +11,21 @@ import SwiftUI
 
 @main
 struct RestaurantApp: App {
-    @StateObject var orderManager = OrderManager()
-    @StateObject var userManager = UserManager()
-    @StateObject var restaurantViewModel = RestaurantViewModel() // Single instance
     @StateObject var authManager = AuthManager()
+    @StateObject var orderManager = OrderManager()
+    @StateObject var restaurantViewModel = RestaurantViewModel()
 
     var body: some Scene {
         WindowGroup {
             if authManager.isAuthenticated {
                 MainTabView()
-                
-                    .environmentObject(authManager) // inject authentication
+                    .environmentObject(authManager)
                     .environmentObject(orderManager)
-                    .environmentObject(userManager)
-                    .environmentObject(restaurantViewModel) // Inject RestaurantViewModel globally
+                    .environmentObject(restaurantViewModel)
+            } else {
+                AuthView()
+                    .environmentObject(authManager)
             }
-            
         }
     }
 }

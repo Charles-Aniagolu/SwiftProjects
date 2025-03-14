@@ -7,7 +7,6 @@
 
 
 //First - Define Models for the Restaurant app: Order Model
-
 import Foundation
 
 struct Order: Identifiable, Codable {
@@ -21,7 +20,6 @@ struct Order: Identifiable, Codable {
         return dish.price * Double(quantity)
     }
 }
-
 
 
 

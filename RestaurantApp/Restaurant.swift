@@ -20,12 +20,14 @@ struct Restaurant: Identifiable, Codable, Hashable {
     var menus: [Menu]
     var imageName: String
 
-    // Properly conforming to Hashable
+    // Conform to Hashable
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 
-    static func ==(lhs: Restaurant, rhs: Restaurant) -> Bool {
+    // Conform to Equatable
+    static func == (lhs: Restaurant, rhs: Restaurant) -> Bool {
         return lhs.id == rhs.id
     }
 }
+
