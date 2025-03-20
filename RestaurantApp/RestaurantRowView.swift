@@ -8,44 +8,44 @@
 import SwiftUI
 
 struct RestaurantRowView: View {
-    let restaurant: Restaurant
-    @EnvironmentObject var restaurantViewModel: RestaurantViewModel
+    @EnvironmentObject var viewModel: RestaurantViewModel
+    var restaurant: Restaurant
 
     var body: some View {
         HStack {
-            //  Restaurant Image (With Placeholder If Missing)
-            if let uiImage = UIImage(named: restaurant.imageName) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
-            } else {
-                Image(systemName: "photo") // Fallback placeholder
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
-                    .foregroundColor(.gray)
-            }
+            Image(restaurant.imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .clipped()
 
-            // Restaurant Name & Cuisine
             VStack(alignment: .leading) {
                 Text(restaurant.name)
                     .font(.headline)
-                Text(restaurant.cuisine)
+                Text(restaurant.location)
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
 
-            Spacer() // Push Heart Button to the Right
+            Spacer()
 
-            //  Heart Button for Favorites
+            // Favorite button should NOT trigger navigation
             Button(action: {
-                restaurantViewModel.toggleFavorite(restaurant)
+                viewModel.toggleFavorite(restaurant: restaurant)
             }) {
-                Image(systemName: restaurantViewModel.favorites.contains(restaurant.id) ? "heart.fill" : "heart")
-                    .foregroundColor(restaurantViewModel.favorites.contains(restaurant.id) ? .red : .gray)
+                Image(systemName: viewModel.favorites.contains(restaurant.id) ? "heart.fill" : "heart")
+                    .foregroundColor(.red)
             }
-            .buttonStyle(PlainButtonStyle()) // Prevents extra button styling
+            .buttonStyle(BorderlessButtonStyle()) // Prevents row tap interference
         }
+        .padding()
+        .background(
+            NavigationLink(destination: RestaurantDetailView(restaurant: restaurant)) {
+                EmptyView()
+            }
+            .opacity(0) // Makes it invisible
+        )
+        .contentShape(Rectangle()) // Ensures only row taps trigger navigation
     }
 }

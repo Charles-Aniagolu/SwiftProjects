@@ -19,21 +19,27 @@ import Combine
 import SwiftUI
 
 class RestaurantViewModel: ObservableObject {
-    @Published var restaurants: [Restaurant] = []
+    @Published var restaurants: [Restaurant] = [] {
+        didSet {
+            updateFavoriteRestaurants() // ✅ Ensure favorites update when restaurants change
+        }
+    }
     @Published var selectedCuisine: String? = nil
     @Published var favorites: Set<UUID> = [] {
         didSet {
             saveFavorites()
         }
     }
-    
+    @Published var favoriteRestaurants: [Restaurant] = [] // ✅ Stores actual restaurant objects
+
     private let favoritesKey = "favoriteRestaurants"
 
     init() {
         print("🔄 Initializing RestaurantViewModel")
-        fetchRestaurants()  // First, load restaurants
+        loadFavorites()  // ✅ Load favorites from UserDefaults
+        fetchRestaurants() // ✅ Fetch restaurants afterward
     }
-    
+
     func fetchRestaurants() {
         let sampleRestaurants: [Restaurant] = [
             Restaurant(
@@ -250,38 +256,42 @@ class RestaurantViewModel: ObservableObject {
         ]
         
         DispatchQueue.main.async {
-                    self.restaurants = sampleRestaurants
-                    self.loadFavorites() // Load favorites AFTER restaurants are available
-                }
-            }
+                   self.restaurants = sampleRestaurants
+               }
+           }
 
-            var favoriteRestaurants: [Restaurant] {
-                restaurants.filter { favorites.contains($0.id) }
-            }
+           // Updates the favoriteRestaurants list when restaurants are loaded
+           private func updateFavoriteRestaurants() {
+               DispatchQueue.main.async {
+                   self.favoriteRestaurants = self.restaurants.filter { self.favorites.contains($0.id) }
+               }
+           }
 
-            private func saveFavorites() {
-                let favoriteIDs = favorites.map { $0.uuidString }
-                UserDefaults.standard.set(favoriteIDs, forKey: favoritesKey)
-            }
+           //  Save favorites to UserDefaults
+           private func saveFavorites() {
+               let favoriteIDs = favorites.map { $0.uuidString }
+               UserDefaults.standard.set(favoriteIDs, forKey: favoritesKey)
+               updateFavoriteRestaurants() //  Update UI immediately
+           }
 
-            private func loadFavorites() {
-                DispatchQueue.global(qos: .background).async {
-                    if let favoriteIDs = UserDefaults.standard.array(forKey: self.favoritesKey) as? [String] {
-                        let uuidFavorites = Set(favoriteIDs.compactMap { UUID(uuidString: $0) })
+           // Load favorites after app restart
+           private func loadFavorites() {
+               if let favoriteIDs = UserDefaults.standard.array(forKey: favoritesKey) as? [String] {
+                   let uuidFavorites = Set(favoriteIDs.compactMap { UUID(uuidString: $0) })
+                   DispatchQueue.main.async {
+                       self.favorites = uuidFavorites
+                       self.updateFavoriteRestaurants() // Ensure favorites update correctly
+                   }
+               }
+           }
 
-                        DispatchQueue.main.async {
-                            self.favorites = uuidFavorites
-                        }
-                    }
-                }
-            }
-
-            func toggleFavorite(_ restaurant: Restaurant) {
-                if favorites.contains(restaurant.id) {
-                    favorites.remove(restaurant.id)
-                } else {
-                    favorites.insert(restaurant.id)
-                }
-                saveFavorites()
-            }
+           // Toggle favorites and update UI
+    func toggleFavorite(restaurant: Restaurant) {
+        if favorites.contains(restaurant.id) {
+            favorites.remove(restaurant.id)
+        } else {
+            favorites.insert(restaurant.id)
         }
+               saveFavorites()
+           }
+       }

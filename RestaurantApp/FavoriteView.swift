@@ -22,7 +22,7 @@ struct FavoriteView: View {
                 .navigationTitle("Favorites")
             } else {
                 List(viewModel.favoriteRestaurants) { restaurant in
-                    RestaurantRowView(restaurant: restaurant)
+                    RestaurantRowView(restaurant: restaurant) 
                 }
                 .navigationTitle("Favorites")
             }
