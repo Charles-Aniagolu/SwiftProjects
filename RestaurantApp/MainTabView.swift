@@ -8,9 +8,9 @@ struct MainTabView: View {
     @StateObject private var restaurantViewModel = RestaurantViewModel()
 
     var body: some View {
-        NavigationView { // ✅ Wrap the entire TabView inside NavigationView
+        NavigationView { // Wrap the entire TabView inside NavigationView
             TabView {
-                // ✅ Restaurants Tab
+                // Restaurants Tab
                 RestaurantListView()
                     .tabItem {
                         Label("Restaurants", systemImage: "list.dash")
@@ -18,28 +18,28 @@ struct MainTabView: View {
                     .environmentObject(restaurantViewModel)
                     .environmentObject(orderManager)
 
-                // ✅ Favorites Tab
+                // Favorites Tab
                 FavoriteView()
                     .tabItem {
                         Label("Favorites", systemImage: "heart.fill")
                     }
                     .environmentObject(restaurantViewModel)
 
-                // ✅ Orders Tab
+                // Orders Tab
                 OrderView()
                     .tabItem {
                         Label("Orders", systemImage: "cart.fill")
                     }
                     .environmentObject(orderManager)
 
-                // ✅ Profile Tab
+                // Profile Tab
                 ProfileView()
                     .tabItem {
                         Label("Profile", systemImage: "person.fill")
                     }
                     .environmentObject(authManager)
             }
-            .navigationBarTitle("Restaurants") // ✅ Ensures title is visible
+            .navigationBarTitle("Restaurants") // Ensures title is visible
             .navigationBarTitleDisplayMode(.inline)
         }
     }
